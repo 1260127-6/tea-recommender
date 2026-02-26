@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tea Analytics Dashboard - Data Quality &amp; Churn</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between mb-8 border-b border-primary/10 pb-6">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-4xl">energy_program_saving</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold tracking-tight">關鍵流失指標</h2>
+</div>
+<div class="hidden md:flex flex-col min-w-64">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary/60">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-xl border-none bg-primary/5 dark:bg-primary/10 focus:ring-2 focus:ring-primary text-sm" placeholder="搜索數據點..." type="text"/>
+</div>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="p-2 rounded-xl bg-primary/5 dark:bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-xl bg-primary/5 dark:bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<main class="space-y-10">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-3xl font-bold tracking-tight mb-2">數據基礎與流失因素</h1>
+<p class="text-slate-500 dark:text-slate-400">數據完整性與預測性流失信號的全面概述。</p>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-full text-xs font-semibold bg-primary text-white">實時監控</span>
+<span class="px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">最後更新：12 分鐘前</span>
+</div>
+</div>
+<!-- Risk Level Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-primary/5 border border-primary/10 p-6 rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg">
+<span class="material-symbols-outlined text-red-600 dark:text-red-400">warning</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400">高風險</span>
+</div>
+<h3 class="text-2xl font-bold mb-1">12.4%</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">可能在 7 天內流失的用戶</p>
+<div class="mt-4 w-full bg-red-100 dark:bg-red-900/20 h-1.5 rounded-full overflow-hidden">
+<div class="bg-red-600 h-full w-[12%]"></div>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 border border-primary/10 p-6 rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
+<span class="material-symbols-outlined text-amber-600 dark:text-amber-400">trending_flat</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">中風險</span>
+</div>
+<h3 class="text-2xl font-bold mb-1">28.7%</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">參與度下降的用戶</p>
+<div class="mt-4 w-full bg-amber-100 dark:bg-amber-900/20 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-600 h-full w-[28%]"></div>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 border border-primary/10 p-6 rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg">
+<span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400">verified</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">低風險</span>
+</div>
+<h3 class="text-2xl font-bold mb-1">58.9%</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">活動穩定的忠誠用戶</p>
+<div class="mt-4 w-full bg-emerald-100 dark:bg-emerald-900/20 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-600 h-full w-[59%]"></div>
+</div>
+</div>
+</div>
+<!-- Data Quality Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-primary/5 rounded-xl border border-primary/10 overflow-hidden flex flex-col">
+<div class="h-40 bg-primary/5 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" data-alt="Abstract geometric data visualization pattern"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-primary/20">database</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-bold text-lg">重複記錄</h3>
+<span class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase">嚴重</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">交易日誌中檢測到 0.8% 的冗餘條目。</p>
+<div class="flex items-center gap-2 text-xs font-medium text-primary"><span class="material-symbols-outlined text-sm">check_circle</span> 自動合併已啟用</div>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 rounded-xl border border-primary/10 overflow-hidden flex flex-col">
+<div class="h-40 bg-primary/5 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent" data-alt="Data node duplication abstract pattern"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-primary/20">content_copy</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-bold text-lg">重複記錄</h3>
+<span class="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase">輕微</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">交易日誌中檢測到 0.8% 的冗餘條目。</p>
+<div class="flex items-center gap-2 text-xs font-medium text-primary"><span class="material-symbols-outlined text-sm">check_circle</span> 自動合併已啟用</div>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 rounded-xl border border-primary/10 overflow-hidden flex flex-col">
+<div class="h-40 bg-primary/5 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-bl from-primary/10 to-transparent" data-alt="Outlier scatter plot abstract illustration"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-primary/20">query_stats</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-bold text-lg">異常值</h3>
+<span class="bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase">警告</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">1.5% 的異常消費模式已標記待審查。</p>
+<div class="flex items-center gap-2 text-xs font-medium text-primary"><span class="material-symbols-outlined text-sm">visibility</span> 人工審查待處理</div>
+</div>
+</div>
+</div>
+<!-- Churn Indicators Chart Section -->
+<div class="bg-white dark:bg-primary/5 p-8 rounded-xl border border-primary/10 shadow-sm">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div>
+<h2 class="text-xl font-bold">關鍵流失指標</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400">客戶行為對流失概率的相對影響</p>
+</div>
+<div class="flex items-center gap-4 text-sm font-medium">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span>特徵重要性</span>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4">
+<span class="text-sm font-semibold text-slate-600 dark:text-slate-300">最後一次訪問（天數）</span>
+<div class="h-8 bg-primary/5 rounded-lg overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-lg" style="width: 85%;"></div>
+</div>
+<span class="text-sm font-bold text-right">0.85</span>
+</div>
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4">
+<span class="text-sm font-semibold text-slate-600 dark:text-slate-300">下單頻率</span>
+<div class="h-8 bg-primary/5 rounded-lg overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-lg" style="width: 72%;"></div>
+</div>
+<span class="text-sm font-bold text-right">0.72</span>
+</div>
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4">
+<span class="text-sm font-semibold text-slate-600 dark:text-slate-300">總支出</span>
+<div class="h-8 bg-primary/5 rounded-lg overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-lg" style="width: 64%;"></div>
+</div>
+<span class="text-sm font-bold text-right">0.64</span>
+</div>
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4">
+<span class="text-sm font-semibold text-slate-600 dark:text-slate-300">支援工單</span>
+<div class="h-8 bg-primary/5 rounded-lg overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-lg" style="width: 48%;"></div>
+</div>
+<span class="text-sm font-bold text-right">0.48</span>
+</div>
+<div class="grid grid-cols-[140px_1fr_60px] items-center gap-4">
+<span class="text-sm font-semibold text-slate-600 dark:text-slate-300">應用登錄</span>
+<div class="h-8 bg-primary/5 rounded-lg overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-lg" style="width: 31%;"></div>
+</div>
+<span class="text-sm font-bold text-right">0.31</span>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-primary/10 grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-primary/5 p-4 rounded-lg flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+<p class="text-xs leading-relaxed text-slate-600 dark:text-slate-300"><strong class="text-slate-900 dark:text-white block mb-1">觀察結果</strong> 自上次訪問以來的時間仍然是流失最強大的預測指標。訪問間隔超過 14 天的用戶有 85% 的流失可能性。</p>
+</div>
+<div class="bg-primary/5 p-4 rounded-lg flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+<p class="text-xs leading-relaxed text-slate-600 dark:text-slate-300"><strong class="text-slate-900 dark:text-white block mb-1">建議操作</strong> 為「最後一次訪問」超過 10 天的群體觸發「我們想念你」忠誠度優惠券，以降低風險。</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-16 py-8 border-t border-primary/10 text-center text-slate-500 dark:text-slate-400 text-sm">
+<p>© 2024 Tea Analytics Dashboard. 保留所有權利。專有數據模型 v2.4.1</p>
+</footer>
+</div>
+</body></html>

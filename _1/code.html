@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+<!-- Fixed Header -->
+<header class="fixed top-0 left-0 right-0 z-50 border-b border-primary/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-2">
+<div class="bg-primary p-1.5 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-2xl">select</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">TeaPulse</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">數據質量</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">指標</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">群體</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">模型</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">建議</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20">登出</button>
+</div>
+</div>
+</div>
+</header>
+<main class="relative pt-16 overflow-hidden">
+<!-- Geometric Tech Background Elements -->
+<div class="absolute inset-0 -z-10 pointer-events-none opacity-20">
+<div class="absolute top-20 left-10 w-64 h-64 bg-emerald-200/40 dark:bg-emerald-900/20 rounded-full blur-3xl"></div>
+<div class="absolute top-80 right-20 w-96 h-96 bg-emerald-100/30 dark:bg-emerald-800/10 rounded-full blur-3xl"></div>
+<svg class="absolute top-0 right-0 h-full w-1/2 text-emerald-100/20 dark:text-emerald-900/5" fill="currentColor" preserveaspectratio="none" viewbox="0 0 100 100">
+<polygon points="50,0 100,0 100,100 0,100"></polygon>
+</svg>
+<div class="absolute top-1/4 left-1/4 grid grid-cols-4 gap-4 opacity-10">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+<div class="max-w-3xl">
+<h2 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-slate-100 leading-[1.1] tracking-tight mb-6">解鎖客戶忠誠度：<span class="text-primary">茶飲店流失分析</span></h2>
+<p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl leading-relaxed">基於數據的洞察，旨在減少客戶流失並提升客戶體驗。利用我們的預測模型，在客戶流失前識別風險。</p>
+<div class="flex flex-wrap gap-4">
+<button class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all shadow-xl shadow-primary/30">查看完整分析 <span class="material-symbols-outlined">trending_up</span></button>
+<button class="flex items-center gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary px-8 py-4 rounded-xl text-lg font-bold transition-all">下載報告 <span class="material-symbols-outlined">download</span></button>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
+<!-- Stat Card 1 -->
+<div class="bg-white/80 dark:bg-slate-800/50 backdrop-blur border border-slate-200 dark:border-slate-700 p-6 rounded-2xl hover:border-primary/50 transition-all group">
+<div class="flex items-center justify-between mb-4">
+<div class="bg-emerald-100 dark:bg-emerald-900/30 p-2 rounded-lg text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="text-emerald-600 dark:text-emerald-400 text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">arrow_upward</span>
+                            2.4%
+                        </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">客戶總數</p>
+<h3 class="text-3xl font-black text-slate-900 dark:text-slate-100 mt-1">1,540</h3>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-white/80 dark:bg-slate-800/50 backdrop-blur border border-slate-200 dark:border-slate-700 p-6 rounded-2xl hover:border-primary/50 transition-all">
+<div class="flex items-center justify-between mb-4">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">person_remove</span>
+</div>
+<span class="text-primary text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">arrow_downward</span>
+                            1.2%
+                        </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">流失率</p>
+<h3 class="text-3xl font-black text-slate-900 dark:text-slate-100 mt-1">24.8%</h3>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-white/80 dark:bg-slate-800/50 backdrop-blur border border-slate-200 dark:border-slate-700 p-6 rounded-2xl hover:border-primary/50 transition-all">
+<div class="flex items-center justify-between mb-4">
+<div class="bg-amber-100 dark:bg-amber-900/30 p-2 rounded-lg text-amber-600 dark:text-amber-400">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<span class="text-primary text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">arrow_downward</span>
+                            5.0%
+                        </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">高風險客戶</p>
+<h3 class="text-3xl font-black text-slate-900 dark:text-slate-100 mt-1">156</h3>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-white/80 dark:bg-slate-800/50 backdrop-blur border border-slate-200 dark:border-slate-700 p-6 rounded-2xl hover:border-primary/50 transition-all">
+<div class="flex items-center justify-between mb-4">
+<div class="bg-emerald-100 dark:bg-emerald-900/30 p-2 rounded-lg text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-emerald-600 dark:text-emerald-400 text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">arrow_upward</span>
+                            0.3%
+                        </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">平均交易額</p>
+<h3 class="text-3xl font-black text-slate-900 dark:text-slate-100 mt-1">$12.50</h3>
+</div>
+</div>
+</section>
+</main>
+<!-- Content Divider -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+<div class="w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent"></div>
+</div>
+</body></html>
