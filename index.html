@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea Shop Customer Churn Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#home" class="logo">🍵 Tea Analytics</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#data-issues">Data Issues</a></li>
+                <li><a href="#metrics">Key Metrics</a></li>
+                <li><a href="#segmentation">Segmentation</a></li>
+                <li><a href="#prediction">Prediction</a></li>
+                <li><a href="#recommendations">Recommendations</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Tea Shop Customer Churn Analysis</h1>
+                <p class="subtitle">Data-driven insights to reduce customer流失 and improve retention</p>
+                <p class="description">
+                    This analysis examines customer behavior data from a tea shop to identify churn risks, 
+                    segment customers, and provide actionable recommendations for the risk management department.
+                </p>
+                <a href="#data-issues" class="btn-primary">Explore Analysis <i class="fas fa-arrow-down"></i></a>
+            </div>
+            <div class="hero-visual">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>6</h3>
+                        <p>Customer Segments</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>14</h3>
+                        <p>Churn Signals Detected</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>68.4%</h3>
+                        <p>Model Accuracy</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>5</h3>
+                        <p>Key Risk Factors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Quality Issues Section -->
+    <section id="data-issues" class="section">
+        <div class="container">
+            <h2 class="section-title">Data Quality Issues Identified</h2>
+            <p class="section-subtitle">Cleaning and preprocessing revealed several data problems affecting analysis</p>
+            
+            <div class="issues-grid">
+                <div class="issue-card">
+                    <div class="issue-icon">
+                        <i class="fas fa-venus-mars"></i>
+                    </div>
+                    <h3>Gender Inconsistencies</h3>
+                    <p>Multiple formats: M, m, F, f, Male, Female, 男, 女. Standardized to F/M.</p>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-icon">
+                        <i class="fas fa-user-times"></i>
+                    </div>
+                    <h3>Duplicate Records</h3>
+                    <p>3 duplicate customer IDs (C0053, C0111, C0195) removed, keeping first occurrence.</p>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Age Outliers</h3>
+                    <p>Negative ages (-120, -50), extreme values (150, 200, 999), and non-numeric values ("twenty").</p>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Negative Values</h3>
+                    <p>Negative spending (-120, -50) and satisfaction scores (-1) corrected with median imputation.</p>
+                </div>
+            </div>
+
+            <div class="data-cleaning-table">
+                <h3>Data Cleaning Decisions</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Issue</th>
+                            <th>Count</th>
+                            <th>Action Taken</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Customer ID duplicates</td>
+                            <td>3 records</td>
+                            <td>Delete duplicates, keep first</td>
+                        </tr>
+                        <tr>
+                            <td>Age negative values</td>
+                            <td>3 records</td>
+                            <td>Mark as missing → median imputation</td>
+                        </tr>
+                        <tr>
+                            <td>Age extreme high values</td>
+                            <td>3 records</td>
+                            <td>Delete records</td>
+                        </tr>
+                        <tr>
+                            <td>Gender inconsistencies</td>
+                            <td>7 records</td>
+                            <td>Standardize to F/M</td>
+                        </tr>
+                        <tr>
+                            <td>Spending negative values</td>
+                            <td>2 records</td>
+                            <td>Mark as missing → median imputation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Metrics Analysis Section -->
+    <section id="metrics" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Key Churn Indicators</h2>
+            <p class="section-subtitle">Critical metrics that signal customer流失 risk</p>
+            
+            <div class="metrics-container">
+                <div class="metric-explanation">
+                    <h3><i class="fas fa-calendar-day"></i> Days Since Last Visit</h3>
+                    <p>The most direct indicator of churn risk. Customers with >30 days since last visit are at mild risk, >60 days at high risk, and >90 days are likely already lost.</p>
+                    
+                    <h3><i class="fas fa-smile"></i> Satisfaction Score</h3>
+                    <p>Customers with satisfaction ≤3 (out of 5) have significantly higher churn probability within 30 days.</p>
+                    
+                    <h3><i class="fas fa-store"></i> Monthly Visits</h3>
+                    <p>Sudden drop from 4-6 visits/month to 1-2 visits indicates "slow disappearance" pattern.</p>
+                    
+                    <h3><i class="fas fa-money-bill-wave"></i> Average Spending</h3>
+                    <p>Consistent decline in spending per visit (e.g., 200 → 120 → 80) often precedes churn.</p>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="churnMetricsChart"></canvas>
+                    <p class="chart-note">Relative importance of churn indicators based on decision tree analysis</p>
+                </div>
+            </div>
+            
+            <div class="warning-signals">
+                <h3>Early Warning Signals for Risk Department</h3>
+                <div class="signals-grid">
+                    <div class="signal-card high-risk">
+                        <h4>🚨 High Risk</h4>
+                        <ul>
+                            <li>Days since last visit > 90</li>
+                            <li>Satisfaction score ≤ 2</li>
+                            <li>Monthly visits dropped to 0</li>
+                        </ul>
+                    </div>
+                    <div class="signal-card medium-risk">
+                        <h4>⚠️ Medium Risk</h4>
+                        <ul>
+                            <li>Days since last visit 60-90</li>
+                            <li>Satisfaction score 3</li>
+                            <li>Monthly visits dropped by >50%</li>
+                        </ul>
+                    </div>
+                    <div class="signal-card low-risk">
+                        <h4>📊 Monitor</h4>
+                        <ul>
+                            <li>Days since last visit 30-60</li>
+                            <li>Satisfaction score 4</li>
+                            <li>Spending decline >20%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Segmentation Section -->
+    <section id="segmentation" class="section">
+        <div class="container">
+            <h2 class="section-title">Customer Segmentation Analysis</h2>
+            <p class="section-subtitle">6 distinct customer clusters identified through K-means clustering (k=6)</p>
+            
+            <div class="cluster-visualization">
+                <canvas id="clusterChart"></canvas>
+            </div>
+            
+            <div class="clusters-grid">
+                <!-- Cluster 0 -->
+                <div class="cluster-card high-risk">
+                    <div class="cluster-header">
+                        <h3>Cluster 0: 極高風險休眠客群</h3>
+                        <span class="risk-badge">Extreme High Risk</span>
+                    </div>
+                    <div class="cluster-stats">
+                        <p><strong>Avg. Days Since Last Visit:</strong> Very High</p>
+                        <p><strong>Avg. Satisfaction:</strong> 1.78 / 5</p>
+                        <p><strong>Characteristics:</strong> Long absence + extreme dissatisfaction</p>
+                    </div>
+                    <p class="cluster-action">Action: Target high-spending customers for recall, others as dormant</p>
+                </div>
+                
+                <!-- Cluster 1 -->
+                <div class="cluster-card no-risk">
+                    <div class="cluster-header">
+                        <h3>Cluster 1: 無風險核心忠誠客群</h3>
+                        <span class="risk-badge">No Risk</span>
+                    </div>
+                    <div class="cluster-stats">
+                        <p><strong>Avg. Days Since Last Visit:</strong> 12 days</p>
+                        <p><strong>Avg. Satisfaction:</strong> 4.5 / 5</p>
+                        <p><strong>Characteristics:</strong> Highly active, very satisfied</p>
+                    </div>
+                    <p class="cluster-action">Action: Maintain relationship with exclusive benefits</p>
+                </div>
+                
+                <!-- Cluster 2 -->
+                <div class="cluster-card medium-risk">
+                    <div class="cluster-header">
+                        <h3>Cluster 2: 中風險觀望客群</h3>
+                        <span class="risk-badge">Medium Risk</span>
+                    </div>
+                    <div class="cluster-stats">
+                        <p><strong>Avg. Days Since Last Visit:</strong> 42.81 days</p>
+                        <p><strong>Avg. Satisfaction:</strong> 3.65 / 5</p>
+                        <p><strong>Characteristics:</strong> Hesitant but still somewhat satisfied</p>
+                    </div>
+                    <p class="cluster-action">Action: Light intervention with new product promotions</p>
+                </div>
+                
+                <!-- Cluster 3 -->
+                <div class="cluster-card high-risk">
+                    <div class="cluster-header">
+                        <h3>Cluster 3: 高風險流失客群</h3>
+                        <span class="risk-badge">High Risk</span>
+                    </div>
+                    <div class="cluster-stats">
+                        <p><strong>Avg. Days Since Last Visit:</strong> ~80 days</p>
+                        <p><strong>Avg. Satisfaction:</strong> < 3 / 5</p>
+                        <p><strong>Characteristics:</strong> Long absence + clear dissatisfaction</p>
+                    </div>
+                    <p class="cluster-action">Action: Proactive customer service follow-up</p>
+                </div>
+                
+                <!-- Cluster 4 -->
+                <div class="cluster-card low-risk">
+                    <div class="cluster-header">
+                        <h3>Cluster 4: 低風險潛在客群</h3>
+                        <span class="risk-badge">Low Risk</span>
+                    </div>
+                    <div class="cluster-stats">
+                        <p><strong>Avg. Days Since Last Visit:</strong> ~30 days</p>
+                        <p><strong>Avg. Satisfaction:</strong> Average</p>
+                        <p><strong>Characteristics:</strong> Normal visit cycle but low satisfaction</p>
+                    </div>
+                    <p class="cluster-action">Action: Small rewards to boost satisfaction</p>
+                </div>
+                
+                <!-- Cluster 5 -->
+                <div class="cluster-card medium-risk">
+                    <div class="cluster-header">
+                        <h3>Cluster 5: 中低風險客群</h3>
+                        <span class="risk-badge">Medium-Low Risk</span>
+                    </div>
+                    <div class="cluster-stats">
+                        <p><strong>Avg. Days Since Last Visit:</strong> ~45 days</p>
+                        <p><strong>Avg. Satisfaction:</strong> 3.8 / 5</p>
+                        <p><strong>Characteristics:</strong> Moderate activity, reasonable satisfaction</p>
+                    </div>
+                    <p class="cluster-action">Action: Regular engagement to prevent deterioration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Churn Prediction Model Section -->
+    <section id="prediction" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Churn Prediction Model</h2>
+            <p class="section-subtitle">Decision tree analysis for predicting customer流失</p>
+            
+            <div class="model-results">
+                <div class="model-performance">
+                    <h3>Model Performance</h3>
+                    <div class="performance-stats">
+                        <div class="performance-card">
+                            <h4>68.4%</h4>
+                            <p>Accuracy</p>
+                        </div>
+                        <div class="performance-card">
+                            <h4>14</h4>
+                            <p>Churn Customers Correctly Identified</p>
+                        </div>
+                        <div class="performance-card">
+                            <h4>29</h4>
+                            <p>Churn Customers Missed (False Negatives)</p>
+                        </div>
+                        <div class="performance-card">
+                            <h4>Depth = 4</h4>
+                            <p>Optimal Tree Depth</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-importance">
+                        <h3>Feature Importance</h3>
+                        <ol>
+                            <li><strong>days_since_last_visit</strong> - Most direct indicator of churn</li>
+                            <li><strong>monthly_visits</strong> - Confirms trend and engagement level</li>
+                            <li><strong>satisfaction</strong> - Predicts future流失 risk</li>
+                            <li><strong>avg_spending_per_visit</strong> - Customer value indicator</li>
+                            <li><strong>uses_app</strong> - App users have lower churn rate (18% vs 36.7%)</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="model-visualization">
+                    <canvas id="decisionTreeChart"></canvas>
+                    <p class="chart-note">Simplified decision tree visualization (depth=4)</p>
+                </div>
+            </div>
+            
+            <div class="model-insights">
+                <h3>Key Insights from the Model</h3>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>APP Usage Matters</h4>
+                        <p>App users have 18.0% churn rate vs 36.7% for non-users. However, "using APP doesn't mean no churn" - 18% still流失.</p>
+                    </div>
+                    <div class="insight-card">
+                        <i class="fas fa-clock"></i>
+                        <h4>Time is Critical</h4>
+                        <p>After 30 days of inactivity, churn probability increases exponentially. 90+ days almost guarantees流失.</p>
+                    </div>
+                    <div class="insight-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Trends Over Absolute Values</h4>
+                        <p>Sudden drops in visit frequency are more predictive than low but consistent visit patterns.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Recommendations Section -->
+    <section id="recommendations" class="section">
+        <div class="container">
+            <h2 class="section-title">Business Recommendations</h2>
+            <p class="section-subtitle">Actionable strategies for the Risk Management Department</p>
+            
+            <div class="recommendations-grid">
+                <div class="recommendation-card">
+                    <div class="rec-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>1. Implement Early Warning System</h3>
+                    <ul>
+                        <li>Monitor <strong>days_since_last_visit</strong> with thresholds: 30d (alert), 60d (high risk), 90d (critical)</li>
+                        <li>Track <strong>satisfaction ≤3</strong> as pre-churn signal</li>
+                        <li>Flag customers with <strong>>50% drop in monthly visits</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="recommendation-card">
+                    <div class="rec-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>2. Targeted Customer Interventions</h3>
+                    <ul>
+                        <li><strong>Cluster 3 (高風險流失客群):</strong> Proactive customer service calls with special offers</li
